@@ -2,11 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Camera, CameraOff } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
+import ml5 from "ml5";
 
 const WebcamViewer = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [model, setModel] = useState<any>(null);
+  const [status, setStatus] = useState<string>("Waiting for input...");
 
   const startWebcam = async () => {
     try {
@@ -33,6 +36,46 @@ const WebcamViewer = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const loadModel = () => {
+      // Path to the model's JSON file in the public folder
+      const modelPath = "https://teachablemachine.withgoogle.com/models/id8jGOFmW/";
+
+      // Load the model using ml5.js
+      const loadedModel = ml5.imageClassifier(modelPath, () => {
+        console.log("Model loaded successfully!");
+        console.log(Object.keys(loadedModel))
+        setModel(loadedModel);
+      });
+    };
+
+    loadModel();
+  }, []);
+
+  useEffect(() => {
+    if (model && videoRef.current) {
+      const classifyFrame = () => {
+        if (videoRef.current) {
+          model.classify(videoRef.current, (results: any[], error: any) => {
+            if (error) {
+              console.error(error);
+              setStatus('Error during prediction');
+              return;
+            }
+
+            // Get the top result
+            const topPrediction = results[0];
+            setStatus(`Predicted: ${topPrediction.label} (Confidence: ${(topPrediction.confidence * 100).toFixed(2)}%)`);
+          });
+        }
+      };
+
+      const interval = setInterval(classifyFrame, 100); // Classify every 100ms (you can adjust this timing)
+
+      return () => clearInterval(interval); // Clean up the interval on component unmount
+    }
+  }, [model]);
 
   useEffect(() => {
     return () => {
@@ -83,6 +126,7 @@ const WebcamViewer = () => {
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
+      <p style={{ marginTop: "20px", fontSize: "18px" }}>Reading Input: {status}</p>
     </div>
   );
 };
