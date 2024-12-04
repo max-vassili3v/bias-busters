@@ -73,6 +73,16 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontSize: {
+        "9x1": '8rem',
+        "10x1": '10rem'
+      },
+      fontFamily: {
+        sans: ["Century Gothic"]
+      },
+      backgroundImage: {
+        "myback": "url('/back.jpg')"
+      }
     },
   },
   plugins: [tailwindcssAnimate],

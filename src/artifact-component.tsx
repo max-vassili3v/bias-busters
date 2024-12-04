@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog';
+import { motion } from 'framer-motion';
 
 const WebcamViewer = () => {
 
@@ -52,129 +53,358 @@ const WebcamViewer = () => {
       transition-opacity duration-500 ease-in-out
       ${isAnimating ? 'opacity-0' : 'opacity-100'}
     `}>
-    <Card className="w-screen h-screen">
-      <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
-        <h2 className="absolute top-1/4 text-5xl md:text-5xl lg:text-9xl text-center">Bias Breakers</h2>
-        <h2 className="absolute top-1/2 text-5xl md:text-5xl lg:text-5xl text-center">a Game by AIKreate</h2>
-        <h2 className="absolute top-2/3 text-5xl md:text-5xl lg:text-5xl text-center">Press 'Next' to start the game</h2>
-      </CardContent>
-    </Card></div>,
+    <CenteredCard msg={
+      <div className="relative w-full h-full">
+        <h2 className="text-9xl font-semibold mb-6 leading-loose">Bias Busters</h2>
+        <br></br>
+          <p className="text-gray-600 text-lg leading-relaxed leading-loose">
+            A game by AIKreate
+          </p>
+          <br></br>
+          <br></br>
+          <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Learn about how to train AI through trying to teach aliens about animals on planet Earth!</h2>
+      </div>
+    }></CenteredCard></div>,
     // SLIDE 2
-    <Card className="w-screen h-screen">
-      <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
+    <CenteredCard msg={
+      <div className="relative w-full h-full">
         <img 
           src="alien.jpg"
           alt="Greeting"
-          className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
+          className="w-96 rounded-lg mx-auto shadow-lg"
         />
-        <div className={`
-      transition-opacity duration-500 ease-in-out
-      ${isAnimating ? 'opacity-0' : 'opacity-100'}
-    `}><h2 className="absolute top-2/3 transform -translate-x-1/4 text-3xl md:text-3xl lg:text-3xl text-center">Hi there!</h2></div>
-      </CardContent>
-    </Card>,
+        <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Hi there!</h2>
+        </div>
+    }></CenteredCard>,
     // SLIDE 3
-    <Card className="w-screen h-screen">
-      <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
+    <CenteredCard msg={
+      <div className="relative w-full h-full">
         <img 
           src="alien.jpg"
           alt="Greeting"
-          className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
+          className="w-96 rounded-lg mx-auto shadow-lg"
         />
         <div className={`
       transition-opacity duration-500 ease-in-out
       ${isAnimating ? 'opacity-0' : 'opacity-100'}
-    `}>
-        <h2 className="absolute top-2/3 transform -translate-x-1/4 text-3xl md:text-3xl lg:text-3xl text-center">We are an alien civilization from the distant planet of Aii.</h2></div>
-      </CardContent>
-    </Card>,
-    // SLIDE 4
-    <Card className="w-screen h-screen">
-    <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
+    `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">We are an alien civilization from the distant planet of Aii.</h2></div>
+      </div>
+    }></CenteredCard>,
+  // SLIDE 4
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
       <img 
         src="alien.jpg"
         alt="Greeting"
-        className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
+        className="w-96 rounded-lg mx-auto shadow-lg"
       />
       <div className={`
     transition-opacity duration-500 ease-in-out
     ${isAnimating ? 'opacity-0' : 'opacity-100'}
-  `}>
-      <h2 className="absolute top-2/3 transform -translate-x-1/4 text-3xl md:text-3xl lg:text-3xl text-center">Not to worry - we come in peace! However, we do have a request of you...</h2></div>
-    </CardContent>
-  </Card>,
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Not to worry - we come in peace! However, we do have something we'd like you to do...</h2></div>
+    </div>
+  }></CenteredCard>,
   // SLIDE 5
-  <Card className="w-screen h-screen">
-  <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
-    <img 
-      src="alien.jpg"
-      alt="Greeting"
-      className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
-    />
-    <div className={`
-  transition-opacity duration-500 ease-in-out
-  ${isAnimating ? 'opacity-0' : 'opacity-100'}
-`}>
-    <h2 className="absolute top-2/3 transform -translate-x-1/4 text-3xl md:text-3xl lg:text-3xl text-center">We would like to learn a bit about the animals of your home planet!</h2></div>
-  </CardContent>
-</Card>,
-// SLIDE 6
-<Card className="w-screen h-screen">
-  <CardContent className="absolute h-full w-full items-center justify-center space-y-8 p-8">
-    <img 
-      src="alien.jpg"
-      alt="Greeting"
-      className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
-    />
-    <div className={`
-  transition-opacity duration-500 ease-in-out
-  ${isAnimating ? 'opacity-0' : 'opacity-100'}
-`}>
-    <h2 className="absolute top-2/3 text-3xl md:text-3xl lg:text-3xl text-center">We have heard about these species called 'dogs' - maybe we can start with that?</h2></div>
-  </CardContent>
-</Card>,
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">We would like to learn a bit about the animals of your home planet!</h2></div>
+    </div>
+  }></CenteredCard>,
+  // SLIDE 6
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">We have heard about these species called 'dogs' - maybe we can start with that?</h2></div>
+    </div>
+  }></CenteredCard>,
 //SLIDE 7 (CAMERA)
-  <WebcamComponent success={nextSlide}></WebcamComponent>,
-  <Card className="w-screen h-screen">
-  <CardContent className="absolute h-full w-full items-center justify-center space-y-8 p-8">
-    <img 
-      src="alien.jpg"
-      alt="Greeting"
-      className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
-    />
-    <div className={`
+<div className={`
+  transition-opacity duration-500 ease-in-out
+  ${isAnimating ? 'opacity-0' : 'opacity-100'}
+`}><WebcamComponent success={nextSlide} msg = "Show the aliens what a dog is through the camera"></WebcamComponent></div>,
+//SLIDE 8
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">So this is what you call a dog...How fascinating!</h2></div>
+    </div>
+  }></CenteredCard>,
+  //SLIDE 9
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">I wonder if this is what all of these 'dogs' look like...</h2></div>
+  }></CenteredCard></div>,
+  //SLIDE 9
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-10">When humans make decisions without enough information to understand the bigger picture, it is called <b>bias.</b></h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Someone being <b>biased</b> is a very similar idea to someone being unfair or not open minded: it is when they are not properly considering every perspective or every option.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Let's go over some examples to understand properly!</h2></div>
+  }></CenteredCard></div>,
+  //SLIDE 9
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose">Imagine you are a human who has only ever tried chocolate ice cream. When someone asks you what your favorite flavor is, you probably say chocolate.</h2>
+      <h2 className="text-4xl mb-6 leading-loose">But this is biased! You have never tried any other flavors before. You do not have enough <b>information</b> to make an <b>unbiased decision.</b></h2>
+      <img 
+        src="icecream.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      /></div>
+  }></CenteredCard></div>,
+  //SLIDE 10
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Your friends and the stranger's friends are listening. Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
+      <img 
+        src="argue.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      /></div>
+  }></CenteredCard></div>,
+  //SLIDE 11
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-10">Our AI aliens can also be biased. We have only shown them one type of dog. They do not have enough information to understand that there are other types of dogs.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">It is important to teach our AI that dogs can come in different colors, sizes, species, and so on.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">So let's continue, and show our aliens what other dogs can look like!</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 12
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><WebcamComponent success={nextSlide} msg = "Show the aliens what other dogs look like!"></WebcamComponent></div>,
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Thanks a bunch! Now we understand what a dog is, and how they come in different sizes and colors!</h2></div>
+    </div>
+  }></CenteredCard>,
+  //SLIDE 13
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">My next question is about this other animal called a 'cat'. Please show me a cat.</h2></div>
+    </div>
+  }></CenteredCard>,
+  //SLIDE 14
+<div className={`
   transition-opacity duration-500 ease-in-out
   ${isAnimating ? 'opacity-0' : 'opacity-100'}
 `}>
-    <h2 className="absolute top-2/3 text-3xl md:text-3xl lg:text-3xl text-center">So this is what you call a 'dog'... How fascinating!</h2></div>
-  </CardContent>
-</Card>,
-<Card className="w-screen h-screen">
-  <CardContent className="absolute h-full w-full items-center justify-center space-y-8 p-8">
-    <img 
-      src="alien.jpg"
-      alt="Greeting"
-      className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
-    />
-    <div className={`
-  transition-opacity duration-500 ease-in-out
-  ${isAnimating ? 'opacity-0' : 'opacity-100'}
-`}>
-    <h2 className="absolute top-2/3 text-3xl md:text-3xl lg:text-3xl text-center">I wonder if this is what all of these 'dogs' look like...</h2></div>
-  </CardContent>
-</Card>,
-<Card className="w-screen h-screen">
-  <CardContent className="absolute h-full w-3/4 flex flex-col items-center justify-center space-y-8 p-8">
-    <h2 className="text-3xl md:text-3xl lg:text-3xl text-center">When humans make decisions, even though they don't have enough information for the bigger picture, this is called <b>bias</b>.</h2>
-    <h2 className="text-3xl md:text-3xl lg:text-3xl text-center">Imagine someone who has only tried strawberry ice cream. They might say 'strawberry ice cream is my favourite flavour'. This is <b>biased</b>, because they have never tried any other flavours of ice cream - they do not have enough <b>information</b>.</h2>
-  </CardContent>
-</Card>
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a cat is through the camera"></WebcamComponent></div>,
+//SLIDE 15
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">So this is a cat, but I don't understand how this is different from a dog! They both have pointy ears, round eyes, fur...</h2></div>
+    
+  }></CenteredCard></div>,
+  //SLIDE 16
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose"><b>Bias</b> can also cause us to not understand the difference between things. Imagine you were arranging fruits into categories but you had never seen an orange before. Is it a strange apple? Maybe a strange peach?</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Because we don't have enough <b>information</b>, we are <b>biased</b> in how we recognise different fruits.</h2>
+      <img 
+        src="orange.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 17
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose">In the same way, our AI aliens are <b>biased</b> because they do not have enough information about cats to properly tell the difference.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Since they have only seen dogs, they can only understand things by comparing it with a dog.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Let's try and teach them the difference by showing more pictures of cats!</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 18 (camera)
+<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!"></WebcamComponent>,
+//SLIDE 19
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<CenteredCard msg={
+    <div className="relative w-full h-full">
+      <img 
+        src="alien.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Wow! Now I understand what a cat is, and the difference between cats and dogs. Thank you!!!</h2></div>
+    
+  }></CenteredCard></div>,
+  //SLIDE 20
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose"><b>Congratulations!</b> you have completed the lesson and you now understand how bias can trick AI, and why good data is needed for AI. </h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">We now have some challenges for you. Teach our alien friends what a 'bear' is and what a 'bird' is using the remaining cards.</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Once you think you have given enough good data, press 'next' to see how well the AI understands what bears and birds are. See if you can get 100% accuracy!</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 21
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-[20%]">First, let's start with bears. </h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 22
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera"></WebcamComponent></div>,
+//SLIDE 23
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: 100% </h2>
+      <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 24
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-[20%]">Now, let's try birds.</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 25 (camera)
+  <div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera"></WebcamComponent></div>,
+//SLIDE 26
+<div className={`
+    transition-opacity duration-500 ease-in-out
+    ${isAnimating ? 'opacity-0' : 'opacity-100'}
+  `}>
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: 100% </h2>
+      <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
+      </div>
+  }></CenteredCard></div>,
+  //SLIDE 27
+<div className={`
+      transition-opacity duration-500 ease-in-out
+      ${isAnimating ? 'opacity-0' : 'opacity-100'}
+    `}>
+    <CenteredCard msg={
+      <div className="relative w-full h-full">
+        <h2 className="text-9xl font-semibold mb-6 leading-loose">Thank you for playing!</h2>
+        <br></br>
+          <p className="text-gray-600 text-lg leading-relaxed leading-loose">
+            Developed by Max Vassiliev
+          </p>
+          <br></br>
+          <br></br>
+          <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">To play again, click 'Next'. If you didn't get 100% accuracy, feel free to try again!</h2>
+      </div>
+    }></CenteredCard></div>
   ];
 
   return (
     <div className="app">
       <audio ref = {audioRef} src="/music.mp3" autoPlay loop></audio>
-      <div className="slide w-full h-full items-center justify-center p-4" key={currentSlide}>
+      <div className="items-center justify-center p-4" key={currentSlide}>
         {slides[currentSlide]}</div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center text-lg">
         <div className="animate-[opacity:1s,transform:1s] ease-in-out hover:scale-105 hover:shadow-2xl transition-all duration-300">
@@ -197,9 +427,10 @@ export default WebcamViewer;
 
 interface WebcamComponentProps{
   success: () => void;
+  msg: string;
 }
 
-const WebcamComponent : React.FC<WebcamComponentProps> = ({success}) => {
+const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg}) => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -275,7 +506,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success}) => {
         }
       };
 
-      const interval = setInterval(classifyFrame, 1000); // Classify every 100ms (you can adjust this timing)
+      const interval = setInterval(classifyFrame, 3000); // Classify every 100ms (you can adjust this timing)
 
       return () => clearInterval(interval); // Clean up the interval on component unmount
     }
@@ -300,7 +531,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success}) => {
           className="w-full h-full object-cover"
         />
         {!stream && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
             <CameraOff className="w-20 h-20 text-gray-400" />
           </div>
         )}
@@ -331,7 +562,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success}) => {
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      <p style={{ marginTop: "20px", fontSize: "18px" }}>Show us what a dog is! ({status})</p>
+      <h2 className="text-2xl font-semibold mb-6 leading-loose bg-black bg-opacity-60 p-5 rounded-lg">{msg}</h2>
     </div>
     <PopupWindow isOpen = {isOpen} onClose={() => setIsOpen(false)} ttitle="Naughty!" msg={
       <div className="text-center"><p>This isn't a Dog!</p><br></br><p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br><p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p></div>
@@ -355,15 +586,33 @@ const PopupWindow : React.FC<PopupWindowProps> = ({ isOpen, onClose, ttitle, msg
           <DialogTitle className="text-xl">{ttitle}</DialogTitle>
         </DialogHeader>
         <div className="p-4">
-          <p>{msg}</p>
+          {msg}
         </div>
         <Button 
-          className="mt-4 transition-all hover:scale-105" 
+          className="mt-4 transition-all hover:scale-105 bg-blue" 
           onClick={onClose}
         >
           Close
         </Button>
       </DialogContent>
     </Dialog>
+  );
+};
+
+interface CenteredCardProps {
+  msg: JSX.Element;
+}
+
+const CenteredCard : React.FC<CenteredCardProps> = ({msg}) => {
+  return (
+    <motion.div initial={{ opacity: 0 }} exit={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+    <div className="min-h-screen flex items-start justify-center p-8 ">
+      <Card className="w-full max-w-[90%] h-[80vh] dark border-0">
+        <CardContent className="p-12 text-center flex flex-col">
+          {msg}
+        </CardContent>
+      </Card>
+    </div>
+    </motion.div>
   );
 };
