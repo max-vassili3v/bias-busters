@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Camera, CameraOff } from 'lucide-react';
+import { Camera, CameraOff, ArrowRight } from 'lucide-react';
+import {Card, CardContent} from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import ml5 from "ml5";
@@ -10,6 +11,14 @@ const WebcamViewer = () => {
   const [error, setError] = useState<string | null>(null);
   const [model, setModel] = useState<any>(null);
   const [status, setStatus] = useState<string>("Waiting for input...");
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const audioRef = useRef(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+
+  
 
   const startWebcam = async () => {
     try {
@@ -35,6 +44,15 @@ const WebcamViewer = () => {
         videoRef.current.srcObject = null;
       }
     }
+  };
+
+  const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+      setIsAnimating(false);
+    }, 500)
   };
 
   useEffect(() => {
@@ -85,9 +103,35 @@ const WebcamViewer = () => {
     };
   }, [stream]);
 
-  return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      <div className="relative w-full max-w-2xl aspect-video bg-gray-100 rounded-lg overflow-hidden">
+  useEffect(() => {
+    // Play the audio when the component is mounted
+    audioRef.current.play();
+  }, []);
+
+  const slides = [
+    <Card className="w-screen h-screen">
+      <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
+        <h2 className="absolute top-1/4 text-5xl md:text-5xl lg:text-9xl text-center">Bias Breakers</h2>
+        <h2 className="absolute top-1/2 text-5xl md:text-5xl lg:text-5xl text-center">a Game by AIKreate</h2>
+        <h2 className="absolute top-2/3 text-5xl md:text-5xl lg:text-5xl text-center">Press 'Next' to start the game</h2>
+      </CardContent>
+    </Card>,
+    <Card className="w-screen h-screen">
+      <CardContent className="h-full w-full flex flex-col items-center justify-center space-y-8 p-8">
+        <img 
+          src="alien.jpg"
+          alt="Greeting"
+          className="absolute top-10 w-1/2 h-1/2 object-cover rounded-lg shadow-xl"
+        />
+        <h2 className="absolute top-2/3 transform -translate-x-1/4 text-3xl md:text-3xl lg:text-3xl text-center">Hi there!</h2>
+      </CardContent>
+    </Card>,
+    <div className="slide bg-green-300 p-10 text-center">Slide 2: Here's Some Info</div>,
+    <div className="slide bg-red-300 p-10 text-center">Slide 3: Enjoy the Experience</div>,
+    <div className="slide bg-yellow-300 p-10 text-center">Slide 4: Thanks for Watching</div>,
+    <div className="slide-container">
+      <div className="flex flex-col items-center gap-4 p-10">
+      <div className="relative w-full h-full max-w-4xl aspect-video bg-gray-100 rounded-lg overflow-hidden">
         <video
           ref={videoRef}
           autoPlay
@@ -96,7 +140,7 @@ const WebcamViewer = () => {
         />
         {!stream && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <CameraOff className="w-12 h-12 text-gray-400" />
+            <CameraOff className="w-20 h-20 text-gray-400" />
           </div>
         )}
       </div>
@@ -107,7 +151,7 @@ const WebcamViewer = () => {
           disabled={!!stream}
           className="flex items-center gap-2"
         >
-          <Camera className="w-4 h-4" />
+          <Camera className="w-4 h-4"/>
           Start Camera
         </Button>
         <Button 
@@ -116,7 +160,7 @@ const WebcamViewer = () => {
           variant="outline"
           className="flex items-center gap-2"
         >
-          <CameraOff className="w-4 h-4" />
+          <CameraOff className="w-4 h-4"/>
           Stop Camera
         </Button>
       </div>
@@ -127,6 +171,31 @@ const WebcamViewer = () => {
         </Alert>
       )}
       <p style={{ marginTop: "20px", fontSize: "18px" }}>Reading Input: {status}</p>
+    </div>
+      </div>
+  ];
+
+  return (
+    <div className="app">
+      <div className="slide w-full h-full items-center justify-center p-4">
+      <div className={`
+          transition-opacity duration-500 ease-in-out
+          ${isAnimating ? 'opacity-0' : 'opacity-100'}
+        `}>
+        {slides[currentSlide]}</div>
+        </div>
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center text-lg">
+        <div className="animate-[opacity:1s,transform:1s] ease-in-out hover:scale-105 hover:shadow-2xl transition-all duration-300">
+        <button
+          onClick={nextSlide}
+          className="bg-blue-500 text-white py-6 px-80  rounded hover:bg-blue-600"
+        >
+          <p className="text-sm md:text-base lg:text-lg xl:text-xl">Next</p>
+          <ArrowRight size={24} />
+        </button>
+        </div>
+        <audio ref = {audioRef} src="/music.mp3" autoPlay loop></audio>
+      </div>
     </div>
   );
 };
