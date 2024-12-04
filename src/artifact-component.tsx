@@ -251,7 +251,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 21 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats}></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats} popupMsg="That's not a cat!"></WebcamComponent>,
 //SLIDE 22
 <CenteredCard msg={
     <div className="relative w-full h-full">
