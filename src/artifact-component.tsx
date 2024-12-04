@@ -21,6 +21,38 @@ const WebcamViewer = () => {
   const camSlides = [5];
 
   const [enabled, setEnabled] = useState(true);
+  const dogs : Record<string, string> = {
+    Dog1: "",
+    Dog2: "",
+    Dog3: "",
+    Dog4: ""
+  };
+  const cats : Record<string, string> = {
+    Cat1: "",
+    Cat2: "",
+    Cat3: "",
+    Cat4: ""
+  };
+  const bears : Record<string, string> = {
+    Bear1: "",
+    Bear2: "",
+    Bear3: "",
+    Bear4: "",
+    Bear5: "",
+    Bear6: "",
+    Bear7: "",
+    Bear8: ""
+  };
+  const birds : Record<string, string> = {
+    Bird1: "",
+    Bird2: "",
+    Bird3: "",
+    Bird4: "",
+    Bird5: "",
+    Bird6: "",
+    Bird7: "",
+    Bird8: ""
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
@@ -106,7 +138,7 @@ const WebcamViewer = () => {
       /><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">We have heard about these species called 'dogs' - maybe we can start with that?</h2></div>
   }></CenteredCard>,
 //SLIDE 7 (CAMERA)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a dog is through the camera"></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a dog is through the camera" acceptArray={dogs}></WebcamComponent>,
 //SLIDE 8
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -310,9 +342,12 @@ export default WebcamViewer;
 interface WebcamComponentProps{
   success: () => void;
   msg: string;
+  acceptArray: Record<string, string>;
+  seenThresh: number;
+  popupMsg: string;
 }
 
-const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg}) => {
+const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptArray, seenThresh, popupMsg}) => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -350,7 +385,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg}) => {
   useEffect(() => {
     const loadModel = () => {
       // Path to the model's JSON file in the public folder
-      const modelPath = "https://teachablemachine.withgoogle.com/models/XsgaQW9Sh/";
+      const modelPath = "https://teachablemachine.withgoogle.com/models/t9XwtXKVp/";
 
       // Load the model using ml5.js
       const loadedModel = ml5.imageClassifier(modelPath, () => {
@@ -378,11 +413,11 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg}) => {
             // Get the top result
             const topPrediction = results[0];
             console.log(`Predicted: ${topPrediction.label} (Confidence: ${(topPrediction.confidence * 100).toFixed(2)}%)`);
-            if(topPrediction.label === "Class 3") {
-              setIsOpen(true);
-            }
-            if(topPrediction.label === "Class 2") {
+            if(topPrediction.label != "Neutral" && topPrediction.label in acceptArray) {
               success();
+            }
+            if(topPrediction.label != "Neutral" && !(topPrediction.label in acceptArray)){
+              setIsOpen(true);
             }
           });
         }
@@ -450,7 +485,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg}) => {
     </div>
 
     <PopupWindow isOpen = {isOpen} onClose={() => setIsOpen(false)} ttitle="Naughty!" msg={
-      <div className="text-center"><p>This isn't a Dog!</p><br></br><p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br><p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p></div>
+      <div className="text-center"><p>{popupMsg}</p><br></br><p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br><p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p></div>
     }></PopupWindow>
       </div>
       </motion.div>
