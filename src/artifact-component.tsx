@@ -49,39 +49,91 @@ const WebcamViewer = () => {
     Cat1: <div>
     <p>Yes! This is a cat!</p>
     <p>Here, we show the AI just what the face of the cat looks like drawn in a 3D style. It is important to recognise the face as well as the whole body.</p>
+    <p>Keep showing the AI other pictures of cats to reduce <b>bias</b>.</p>
     </div>,
     Cat2: <div>
     <p>Yes! This is a cat!</p>
     <p>It is important to show to our AI that cats can also be drawn like cartoons and have white fur.</p>
+    <p>Keep showing the AI other pictures of cats to reduce <b>bias</b>.</p>
     </div>,
     Cat3: <div>
     <p>Yes! This is a cat!</p>
     <p>Here, we show the AI that cats can come in the color black, another color to reduce the bias of the AI!</p>
     <p>The cat is also looking sideways, so that the AI can recognise different views of cats.</p>
+    <p>Keep showing the AI other pictures of cats to reduce <b>bias</b>.</p>
     </div>,
     Cat4: <div><p>Yes! This is a cat!</p>
     <p>We have the full body of the cat, from head to tail here.</p>
+    <p>Keep showing the AI other pictures of cats to reduce <b>bias</b>.</p>
     </div>
   };
   const bears : Record<string, JSX.Element> = {
-    Bear1: <div></div>,
-    Bear2: <div></div>,
-    Bear3: <div></div>,
-    Bear4: <div></div>,
-    Bear5: <div></div>,
-    Bear6: <div></div>,
-    Bear7: <div></div>,
-    Bear8: <div></div>
+    Bear1: <div><p>Yes! This is a bear!</p>
+    <p>This is a teddy bear: after all, that is a <b>type</b> of bear right?</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear2: <div><p>Yes! This is a bear!</p>
+    <p>This is a cute, cartooney gray bear! Very <b>distinct</b> from the others, so will reduce <b>bias</b> a lot!</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear3: <div><p>Yes! This is a bear!</p>
+    <p>This is a polar bear, another <b>type</b> of bear, drawn in a <b>Cartoon artstyle</b>.</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear4: <div><p>Yes! This is a bear!</p>
+    <p>This 3D grizzly bear is what most people imagine when they think of a bear, very important to teach our AI!</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear5: <div><p>Yes! This is a bear!</p>
+    <p>Look at this cute baby bear, drawn in a <b>3D artstyle.</b>.</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear6: <div><p>Yes! This is a bear!</p>
+    <p>This bear is black, one of the possible <b>colours</b> of bear our AI should know.</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear7: <div><p>Yes! This is a bear!</p>
+    <p>This is a polar bear, another <b>type</b> of bear, drawn in a <b>3D artstyle</b>.</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>,
+    Bear8: <div><p>Yes! This is a bear!</p>
+    <p>This is a <b>cartoon bear</b>, important for our AI to be able to recognise as a bear.</p>
+    <p>Keep showing the AI other pictures of bears to reduce <b>bias</b>.</p>
+    </div>
   };
   const birds : Record<string, JSX.Element> = {
-    Bird1: <div></div>,
-    Bird2: <div></div>,
-    Bird3: <div></div>,
-    Bird4: <div></div>,
-    Bird5: <div></div>,
-    Bird6: <div></div>,
-    Bird7: <div></div>,
-    Bird8: <div></div>
+    Bird1: <div><p>Yes! This is a bird!</p>
+    <p>This face of a majestic eagle is one of the many representations of a bird our AI should know!</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird2: <div><p>Yes! This is a bird!</p>
+    <p>Here, we only see the bird's face, helping the AI recognise a bird just by its face!</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird3: <div><p>Yes! This is a bird!</p>
+    <p>This picture of an eagle shows its full body, so that AI knows what that looks like as well!</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird4: <div><p>Yes! This is a bird!</p>
+    <p>This white stork shows in full view the wings that birds have, and how big they can be! This will reduce <b>bias</b>.</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird5: <div><p>Yes! This is a bird!</p>
+    <p>This is a cute, cartooney pidgeon. Learning that this is also a bird helps reduce <b>bias</b></p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird6: <div><p>Yes! This is a bird!</p>
+    <p>This pink flamingo is very unique from the others, helping to reduce <b>bias</b>!</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird7: <div><p>Yes! This is a bird!</p>
+    <p>This pidgeon is 3D, helping to reduce <b>bias</b> by showing different styles of pictures.</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>,
+    Bird8: <div><p>Yes! This is a bird!</p>
+    <p>This crow is black, a different <b>color</b> from the rest of the birds. This teaches the AI that birds can come in different colors!</p>
+    <p>Keep showing the AI other pictures of birds to reduce <b>bias</b>.</p>
+    </div>
   };
 
   const nextSlide = () => {
@@ -387,6 +439,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const [model, setModel] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const reject_message : JSX.Element = <div>
+    <p>This isn't the correct animal!</p><br></br>
     <p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br>
     <p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p>
     </div>
@@ -558,15 +611,15 @@ interface PopupWindowProps {
 const PopupWindow : React.FC<PopupWindowProps> = ({ isOpen, onClose, ttitle, msg}) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md animate-pop-in data-[state=closed]:animate-pop-out fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <DialogContent className="sm:max-w-xl animate-pop-in data-[state=closed]:animate-pop-out fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500">
         <DialogHeader>
-          <DialogTitle className="text-xl">{ttitle}</DialogTitle>
+          <DialogTitle className="text-xl text-center">{ttitle}</DialogTitle>
         </DialogHeader>
-        <div className="p-4">
+        <div className="p-4 leading-loose">
           {msg}
         </div>
         <Button 
-          className="mt-4 transition-all hover:scale-105 bg-blue" 
+          className="mt-4 transition-all hover:scale-105 bg-blue-600 p-10" 
           onClick={onClose}
         >
           Close
