@@ -18,40 +18,70 @@ const WebcamViewer = () => {
 
   const audioRef = useRef(null);
 
-  const camSlides = [5, 12, 15, 19, 23, 26];
+  const camSlides = [5, 12, 15, 19];
+
+  const accuracy = useRef(0.0);
 
   const [enabled, setEnabled] = useState(true);
-  const dogs : Record<string, string> = {
-    Dog1: "",
-    Dog2: "",
-    Dog3: "",
-    Dog4: ""
+  const dogs : Record<string, JSX.Element> = {
+    Dog1: <div>
+    <p>Yes! This is a dog!</p>
+    <p>This dog is drawn in a <b>cartoon style.</b> It is important for the AI to recognise different styles of picture for dogs.</p>
+    <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
+    </div>,
+    Dog2: <div>
+    <p>Yes! This is a dog!</p>
+    <p>Here we see what the <b>full body</b> of the dog looks like, so that AI can recognise dogs not just by their face.</p>
+    <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
+    </div>,
+    Dog3: <div>
+    <p>Yes! This is a dog!</p>
+    <p>Here we have a different <b>species</b> of the dog as well as a different <b>style of picture.</b> Now our AI can recognise this too!</p>
+    <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
+    </div>,
+    Dog4: <div>
+    <p>Yes! This is a dog!</p>
+    <p>Here we have a different <b>species</b> of the dog as well as a different <b>style of picture.</b> Now our AI can recognise this too!</p>
+    <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
+    </div>
   };
-  const cats : Record<string, string> = {
-    Cat1: "",
-    Cat2: "",
-    Cat3: "",
-    Cat4: ""
+  const cats : Record<string, JSX.Element> = {
+    Cat1: <div>
+    <p>Yes! This is a cat!</p>
+    <p>Here, we show the AI just what the face of the cat looks like drawn in a 3D style. It is important to recognise the face as well as the whole body.</p>
+    </div>,
+    Cat2: <div>
+    <p>Yes! This is a cat!</p>
+    <p>It is important to show to our AI that cats can also be drawn like cartoons and have white fur.</p>
+    </div>,
+    Cat3: <div>
+    <p>Yes! This is a cat!</p>
+    <p>Here, we show the AI that cats can come in the color black, another color to reduce the bias of the AI!</p>
+    <p>The cat is also looking sideways, so that the AI can recognise different views of cats.</p>
+    </div>,
+    Cat4: <div><p>Yes! This is a cat!</p>
+    <p>We have the full body of the cat, from head to tail here.</p>
+    </div>
   };
-  const bears : Record<string, string> = {
-    Bear1: "",
-    Bear2: "",
-    Bear3: "",
-    Bear4: "",
-    Bear5: "",
-    Bear6: "",
-    Bear7: "",
-    Bear8: ""
+  const bears : Record<string, JSX.Element> = {
+    Bear1: <div></div>,
+    Bear2: <div></div>,
+    Bear3: <div></div>,
+    Bear4: <div></div>,
+    Bear5: <div></div>,
+    Bear6: <div></div>,
+    Bear7: <div></div>,
+    Bear8: <div></div>
   };
-  const birds : Record<string, string> = {
-    Bird1: "",
-    Bird2: "",
-    Bird3: "",
-    Bird4: "",
-    Bird5: "",
-    Bird6: "",
-    Bird7: "",
-    Bird8: ""
+  const birds : Record<string, JSX.Element> = {
+    Bird1: <div></div>,
+    Bird2: <div></div>,
+    Bird3: <div></div>,
+    Bird4: <div></div>,
+    Bird5: <div></div>,
+    Bird6: <div></div>,
+    Bird7: <div></div>,
+    Bird8: <div></div>
   };
 
   const nextSlide = () => {
@@ -138,7 +168,7 @@ const WebcamViewer = () => {
       /><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">We have heard about these species called 'dogs' - maybe we can start with that?</h2></div>
   }></CenteredCard>,
 //SLIDE 7 (CAMERA)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a dog is through the camera" acceptArray={dogs} popupMsg="That's not a dog!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} seenThresh = {1} msg = "Show the aliens what a dog is through the camera" acceptArray={dogs} acc = {accuracy}></WebcamComponent>,
 //SLIDE 8
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -197,7 +227,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 14 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what other dogs look like!" acceptArray={dogs} popupMsg="That's not a dog!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} seenThresh={3} msg = "Show the aliens what other dogs look like!" acceptArray={dogs} acc = {accuracy}></WebcamComponent>,
 //SLIDE 15
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -218,7 +248,7 @@ const WebcamViewer = () => {
 <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">My next question is about this other animal called a 'cat'. Please show me a cat.</h2></div>
   }></CenteredCard>,
   //SLIDE 17 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a cat is through the camera" acceptArray={cats} popupMsg = "That's not a cat!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a cat is through the camera" acceptArray={cats} seenThresh={1} acc = {accuracy}></WebcamComponent>,
 //SLIDE 18
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -251,7 +281,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 21 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats} popupMsg="That's not a cat!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats} seenThresh={3} acc = {accuracy}></WebcamComponent>,
 //SLIDE 22
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -278,11 +308,11 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 25
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera" acceptArray={bears} popupMsg="That's not a bear!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera" acceptArray={bears} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
 //SLIDE 26
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: 100% </h2>
+      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
       <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
       </div>
   }></CenteredCard>,
@@ -293,11 +323,11 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 28 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera" acceptArray={birds} popupMsg="That's not a bird!"></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera" acceptArray={birds} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
 //SLIDE 29
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: 100% </h2>
+      <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
       <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
       </div>
   }></CenteredCard>,
@@ -343,12 +373,12 @@ export default WebcamViewer;
 interface WebcamComponentProps{
   success: () => void;
   msg: string;
-  acceptArray: Record<string, string>;
+  acceptArray: Record<string, JSX.Element>;
   seenThresh: number;
-  popupMsg: string;
+  acc: React.RefObject<number>;
 }
 
-const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptArray, seenThresh, popupMsg}) => {
+const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptArray, seenThresh, acc}) => {
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -356,6 +386,13 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const [status, setStatus] = useState<string>("Waiting for input...");
   const [model, setModel] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const reject_message : JSX.Element = <div>
+    <p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br>
+    <p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p>
+    </div>
+  const [message, setMessage] = useState<JSX.Element>(null);
+  const seenSet = useRef(new Set<string>());
+  const mistakes = useRef(0);
 
   const startWebcam = async () => {
     try {
@@ -415,10 +452,16 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
             const topPrediction = results[0];
             console.log(`Predicted: ${topPrediction.label} (Confidence: ${(topPrediction.confidence * 100).toFixed(2)}%)`);
             if(topPrediction.label != "Neutral" && topPrediction.label in acceptArray) {
-              success();
+              seenSet.current.add(topPrediction.label)
+              setMessage(acceptArray[topPrediction.label]);
+              acc.current = Math.max(0, Math.min(100, 12.5 * seenSet.current.size - 0.5 * mistakes.current));
+              console.log("Accuracy", acc);
             }
             if(topPrediction.label != "Neutral" && !(topPrediction.label in acceptArray)){
-              setIsOpen(true);
+              mistakes.current += 1;
+              setMessage(reject_message);
+              acc.current = Math.max(0, Math.min(100, 12.5 * seenSet.current.size - 0.5 * mistakes.current));
+              console.log("Accuracy", acc);
             }
           });
         }
@@ -429,6 +472,18 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
       return () => clearInterval(interval); // Clean up the interval on component unmount
     }
   }, [model]);
+
+  useEffect(() => {
+    console.log(seenSet.current.size);
+    if(message !== null) {
+      if(seenSet.current.size != seenThresh) {
+        setIsOpen(true);
+      }else{
+        success();
+      }
+      
+    }
+  }, [message]);
 
   useEffect(() => {
     return () => {
@@ -485,8 +540,8 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
       <h2 className="text-2xl font-semibold mb-6 leading-loose bg-black bg-opacity-60 p-5 rounded-lg">{msg}</h2>
     </div>
 
-    <PopupWindow isOpen = {isOpen} onClose={() => setIsOpen(false)} ttitle="Naughty!" msg={
-      <div className="text-center"><p>{popupMsg}</p><br></br><p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br><p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p></div>
+    <PopupWindow isOpen = {isOpen} onClose={() => setIsOpen(false)} ttitle="Message" msg={
+      <div className="text-center">{message}</div>
     }></PopupWindow>
       </div>
       </motion.div>
