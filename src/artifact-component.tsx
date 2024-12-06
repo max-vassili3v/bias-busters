@@ -1,3 +1,5 @@
+//@ts-ignore
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Camera, CameraOff, ArrowRight } from 'lucide-react';
 import {Card, CardContent} from '@/components/ui/card';
@@ -41,7 +43,7 @@ const WebcamViewer = () => {
     </div>,
     Dog4: <div>
     <p>Yes! This is a dog!</p>
-    <p>Here we have a different <b>species</b> of the dog as well as a different <b>style of picture.</b> Now our AI can recognise this too!</p>
+    <p>This dog is <b>black</b>, a different color to the rest. Teaching AI that dogs can be different colors will reduce bias!`121</p>
     <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
     </div>
   };
@@ -438,6 +440,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const [status, setStatus] = useState<string>("Waiting for input...");
   const [model, setModel] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const currentPrediction = useRef("");
   const reject_message : JSX.Element = <div>
     <p>This isn't the correct animal!</p><br></br>
     <p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br>
@@ -446,6 +449,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const [message, setMessage] = useState<JSX.Element>(null);
   const seenSet = useRef(new Set<string>());
   const mistakes = useRef(0);
+  
 
   const startWebcam = async () => {
     try {
@@ -504,15 +508,18 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
             // Get the top result
             const topPrediction = results[0];
             console.log(`Predicted: ${topPrediction.label} (Confidence: ${(topPrediction.confidence * 100).toFixed(2)}%)`);
+            currentPrediction.current = topPrediction.label
             if(topPrediction.label != "Neutral" && topPrediction.label in acceptArray) {
               seenSet.current.add(topPrediction.label)
               setMessage(acceptArray[topPrediction.label]);
+              // @ts-ignore
               acc.current = Math.max(0, Math.min(100, 12.5 * seenSet.current.size - 0.5 * mistakes.current));
               console.log("Accuracy", acc);
             }
             if(topPrediction.label != "Neutral" && !(topPrediction.label in acceptArray)){
               mistakes.current += 1;
-              setMessage(reject_message);
+              setMessage(<div><div style = {{visibility: 'hidden'}}>{currentPrediction.current}</div>{reject_message}</div>);
+              // @ts-ignore
               acc.current = Math.max(0, Math.min(100, 12.5 * seenSet.current.size - 0.5 * mistakes.current));
               console.log("Accuracy", acc);
             }
