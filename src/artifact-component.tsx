@@ -445,6 +445,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
     <p>This isn't the correct animal!</p><br></br>
     <p>However, this shows us one way an AI can be <b>biased</b>!</p><br></br>
     <p>Just like how wrong data can trick humans, it can also trick AI. When you train AI, you have to make sure your data is correct.</p>
+    <p><b>Note: AI may be wrong! Sometimes, you need to try again.</b></p>
     </div>
   const [message, setMessage] = useState<JSX.Element>(null);
   const seenSet = useRef(new Set<string>());
