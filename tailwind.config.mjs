@@ -78,7 +78,7 @@ export default {
         "10x1": '10rem'
       },
       fontFamily: {
-        sans: ["Century Gothic"]
+        sans: ["Century Gothic", "Tahoma", "Arial"]
       },
       backgroundImage: {
         "myback": "url('/back.jpg')"
