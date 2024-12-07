@@ -406,10 +406,10 @@ const WebcamViewer = () => {
 
   return (
     <div className="app">
-      <img src="image1.png" className="w-24 absolute right-6 top-6 rounded-lg mx-auto shadow-lg"></img>
+      <img src="logo.png" className="w-24 absolute right-6 top-6 rounded-lg mx-auto shadow-lg"></img>
       <button
           onClick={refresh}
-          className="bg-blue-500 text-white py-8 px-6 absolute left-10 bottom-10  rounded hover:bg-blue-600"
+          className="bg-blue-600 text-white py-8 px-6 absolute left-0 bottom-0  rounded hover:bg-blue-700"
         >
           <p className="text-sm md:text-base lg:text-lg xl:text-xl">Restart</p>
         </button>
