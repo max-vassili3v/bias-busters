@@ -150,6 +150,10 @@ const WebcamViewer = () => {
     
   };
 
+  const refresh = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     // Play the audio when the component is mounted
     audioRef.current.play();
@@ -402,7 +406,14 @@ const WebcamViewer = () => {
 
   return (
     <div className="app">
-      <audio ref = {audioRef} src="/music.mp3" autoPlay loop></audio>
+      <img src="image1.png" className="w-24 absolute right-6 top-6 rounded-lg mx-auto shadow-lg"></img>
+      <button
+          onClick={refresh}
+          className="bg-blue-500 text-white py-8 px-6 absolute left-10 bottom-10  rounded hover:bg-blue-600"
+        >
+          <p className="text-sm md:text-base lg:text-lg xl:text-xl">Restart</p>
+        </button>
+      <audio ref = {audioRef} src="music.mp3" autoPlay loop></audio>
       <div className="items-center justify-center p-4" key={currentSlide}>
         {slides[currentSlide]}</div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center text-lg">
