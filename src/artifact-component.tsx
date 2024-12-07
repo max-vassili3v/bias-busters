@@ -43,7 +43,7 @@ const WebcamViewer = () => {
     </div>,
     Dog4: <div>
     <p>Yes! This is a dog!</p>
-    <p>This dog is <b>black</b>, a different color to the rest. Teaching AI that dogs can be different colors will reduce bias!`121</p>
+    <p>This dog is <b>black</b>, a different color to the rest. Teaching AI that dogs can be different colors will reduce bias!</p>
     <p>Keep showing the AI other pictures of dogs to reduce <b>bias</b>.</p>
     </div>
   };
