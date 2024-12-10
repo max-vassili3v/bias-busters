@@ -13,9 +13,11 @@ import {
   DialogTitle
 } from '@/components/ui/dialog';
 import { motion, AnimatePresence } from 'framer-motion';
+import useSound from 'use-sound';
 
 const WebcamViewer = () => {
 
+  const [slideSound] = useSound('switch_002.ogg', { volume: 0.5 })
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const audioRef = useRef(null);
@@ -139,6 +141,7 @@ const WebcamViewer = () => {
   };
 
   const nextSlide = () => {
+    slideSound();
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
     console.log(currentSlide);
     if(camSlides.includes(currentSlide)) {
@@ -406,7 +409,7 @@ const WebcamViewer = () => {
 
   return (
     <div className="app">
-      <img src="logo.png" className="w-24 absolute right-6 top-6 rounded-lg mx-auto shadow-lg"></img>
+      <img src="logo.png" className="w-36 absolute right-6 top-6 rounded-lg mx-auto shadow-lg"></img>
       <button
           onClick={refresh}
           className="bg-blue-600 text-white py-8 px-6 absolute left-0 bottom-0  rounded hover:bg-blue-700"
@@ -445,6 +448,7 @@ interface WebcamComponentProps{
 
 const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptArray, seenThresh, acc}) => {
 
+  const [successSound] = useSound('confirmation_002.ogg', { volume: 0.5 })
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -461,7 +465,6 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const [message, setMessage] = useState<JSX.Element>(null);
   const seenSet = useRef(new Set<string>());
   const mistakes = useRef(0);
-  
 
   const startWebcam = async () => {
     try {
@@ -524,6 +527,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
             if(topPrediction.label != "Neutral" && topPrediction.label in acceptArray) {
               seenSet.current.add(topPrediction.label)
               setMessage(acceptArray[topPrediction.label]);
+              successSound();
               // @ts-ignore
               acc.current = Math.max(0, Math.min(100, 12.5 * seenSet.current.size - 0.5 * mistakes.current));
               console.log("Accuracy", acc);
@@ -663,7 +667,7 @@ const CenteredCard : React.FC<CenteredCardProps> = ({msg}) => {
   return (
     <motion.div initial="hidden" exit="hidden" animate="visible" variants={variants} transition={{ duration: 0.5, ease: "easeOut"}}>
     <div className="min-h-screen flex items-start justify-center p-8 ">
-      <Card className="w-full max-w-[90%] h-[80vh] dark border-0">
+      <Card className="w-full max-w-[85%] h-[80vh] dark border-0">
         <CardContent className="p-12 text-center flex flex-col">
           {msg}
         </CardContent>

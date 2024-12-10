@@ -1,5 +1,6 @@
 import tailwindcssAnimate from "tailwindcss-animate";
 
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -78,7 +79,7 @@ export default {
         "10x1": '10rem'
       },
       fontFamily: {
-        sans: ["Century Gothic", "Tahoma", "Arial"]
+        sans: ["Montserrat" ,"Century Gothic", "Tahoma", "Arial"]
       },
       backgroundImage: {
         "myback": "url('/back.jpg')"
