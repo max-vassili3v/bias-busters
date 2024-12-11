@@ -22,7 +22,7 @@ const WebcamViewer = () => {
 
   const audioRef = useRef(null);
 
-  const camSlides = [5, 12, 15, 19];
+  const camSlides = [5, 16, 19, 23];
 
   const accuracy = useRef(0.0);
 
@@ -254,36 +254,62 @@ const WebcamViewer = () => {
 <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">When humans make decisions without enough information to understand the bigger picture, it is called <b>bias.</b></h2>
-      <h2 className="text-4xl mb-6 leading-loose py-10">Someone being <b>biased</b> is a very similar idea to someone being unfair or not open minded: it is when they are not properly considering every perspective or every option.</h2>
-      <h2 className="text-4xl mb-6 leading-loose py-10">Let's go over some examples to understand properly!</h2></div>
+      <h2 className="text-4xl mb-6 leading-loose py-10">Someone being <b>biased</b> is a very similar idea to someone being unfair or not open minded: it is when they are not properly considering every perspective or every option.</h2></div>
   }></CenteredCard>,
   //SLIDE 11
 <CenteredCard msg={
     <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-10">Let's go over some examples to understand properly!</h2></div>
+  }></CenteredCard>,
+  //SLIDE 12
+<CenteredCard msg={
+    <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose">Imagine you are a human who has only ever tried chocolate ice cream. When someone asks you what your favorite flavor is, you probably say chocolate.</h2>
-      <h2 className="text-4xl mb-6 leading-loose">But this is biased! You have never tried any other flavors before. You do not have enough <b>information</b> to make an <b>unbiased decision.</b></h2>
       <img 
         src="icecream.jpg"
         alt="Greeting"
-        className="w-96 rounded-lg mx-auto shadow-lg"
-      /></div>
-  }></CenteredCard>,
-  //SLIDE 12
-  <CenteredCard msg={
-    <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger.</h2>
-      <h2 className="text-4xl mb-6 leading-loose py-10">Your friends and the stranger's friends are listening. Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
-      <img 
-        src="argue.jpg"
-        alt="Greeting"
-        className="w-96 rounded-lg mx-auto shadow-lg"
+        className="max-w-md relative top-10 rounded-lg mx-auto shadow-lg"
       /></div>
   }></CenteredCard>,
   //SLIDE 13
   <CenteredCard msg={
     <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose">But this is biased! You have never tried any other flavors before. You do not have enough <b>information</b> to make an <b>unbiased decision.</b></h2>
+      <img 
+        src="icecream.jpg"
+        alt="Greeting"
+        className="max-w-md relative top-10 rounded-lg mx-auto shadow-lg"
+      /></div>
+  }></CenteredCard>,
+  //SLIDE 14
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger. Your friends and the stranger's friends are listening.</h2>
+      <img 
+        src="argue.jpg"
+        alt="Greeting"
+        className="max-w-md rounded-lg relative top-10 mx-auto shadow-lg"
+      /></div>
+  }></CenteredCard>,
+  //SLIDE 15
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-10"> Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
+      <img 
+        src="argue.jpg"
+        alt="Greeting"
+        className="max-w-md rounded-lg relative top-10 mx-auto shadow-lg"
+      /></div>
+  }></CenteredCard>,
+  //SLIDE 15
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">Our AI aliens can also be biased. We have only shown them one type of dog. They do not have enough information to understand that there are other types of dogs.</h2>
       <h2 className="text-4xl mb-6 leading-loose py-10">It is important to teach our AI that dogs can come in different colors, sizes, species, and so on.</h2>
+      </div>
+  }></CenteredCard>,
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">So let's continue, and show our aliens what other dogs can look like!</h2>
       </div>
   }></CenteredCard>,
@@ -338,6 +364,10 @@ const WebcamViewer = () => {
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose">In the same way, our AI aliens are <b>biased</b> because they do not have enough information about cats to properly tell the difference.</h2>
       <h2 className="text-4xl mb-6 leading-loose py-10">Since they have only seen dogs, they can only understand things by comparing it with a dog.</h2>
+      </div>
+  }></CenteredCard>,
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">Let's try and teach them the difference by showing more pictures of cats!</h2>
       </div>
   }></CenteredCard>,
@@ -452,7 +482,6 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [status, setStatus] = useState<string>("Waiting for input...");
   const [model, setModel] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const currentPrediction = useRef("");
@@ -506,6 +535,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
     };
 
     loadModel();
+    startWebcam();
   }, []);
 
   useEffect(() => {
@@ -516,7 +546,6 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
           model.classify(videoRef.current, (results: any[], error: any) => {
             if (error) {
               console.error(error);
-              setStatus('Error during prediction');
               return;
             }
 
@@ -636,13 +665,13 @@ const PopupWindow : React.FC<PopupWindowProps> = ({ isOpen, onClose, ttitle, msg
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-xl animate-pop-in data-[state=closed]:animate-pop-out fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500">
         <DialogHeader>
-          <DialogTitle className="text-xl text-center">{ttitle}</DialogTitle>
+          <DialogTitle className="text-4xl text-center">{ttitle}</DialogTitle>
         </DialogHeader>
-        <div className="p-4 leading-loose">
+        <div className="text-xl p-4 leading-loose">
           {msg}
         </div>
         <Button 
-          className="mt-4 transition-all hover:scale-105 bg-blue-600 p-10" 
+          className="mt-4 text-2xl transition-all hover:scale-105 bg-blue-600 p-10" 
           onClick={onClose}
         >
           Close
