@@ -314,7 +314,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 17 (camera)
-<WebcamComponent success={nextSlide} seenThresh={3} msg = "Show the aliens what other dogs look like!" acceptArray={dogs} acc = {accuracy}></WebcamComponent>,
+<WebcamComponent success={nextSlide} seenThresh={3} msg = "Show the aliens what other dogs look like! You will need to show at least 3 to move on." acceptArray={dogs} acc = {accuracy}></WebcamComponent>,
 //SLIDE 18
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -382,7 +382,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 25 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats} seenThresh={3} acc = {accuracy}></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats! You will need to show at least 3 to move on." acceptArray = {cats} seenThresh={3} acc = {accuracy}></WebcamComponent>,
 //SLIDE 26
 <CenteredCard msg={
     <div className="relative w-full h-full">
@@ -399,7 +399,14 @@ const WebcamViewer = () => {
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose"><b>Congratulations!</b> you have completed the lesson and you now understand how bias can trick AI, and why good data is needed for AI. </h2>
       <h2 className="text-4xl mb-6 leading-loose py-10">We now have some challenges for you. Teach our alien friends what a 'bear' is and what a 'bird' is using the remaining cards.</h2>
-      <h2 className="text-4xl mb-6 leading-loose py-10">Once you think you have given enough good data, press 'next' to see how well the AI understands what bears and birds are. See if you can get 100% accuracy!</h2>
+      </div>
+  }></CenteredCard>,
+  //SLIDE 27
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
+      <h2 className="text-4xl mb-6 leading-loose py-10">Once you think you have given enough good data, press 'next' to see how well the AI understands what bears and birds are</h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10"><b>Accuracy</b> is a score between 0% and 100% that we will use to see <b>how well you trained your AI.</b></h2>
+      <h2 className="text-4xl mb-6 leading-loose py-10">See if you can get 100% accuracy!</h2>
       </div>
   }></CenteredCard>,
   //SLIDE 28
@@ -409,12 +416,20 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 29
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera" acceptArray={bears} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera\n. Try and get a high accuracy by showing a variety of bears." acceptArray={bears} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
 //SLIDE 30
   <CenteredCard msg={
-    <div className="relative w-full h-full">
+      <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
-      <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
+      <h2 className="text-4xl mb-6 leading-loose">{
+        accuracy.current <= 33 ?
+        "Try to get a higher score by training with more cards, and not using wrong data!" :
+        accuracy.current <= 66 ?
+        "Nice try! Try again later training with more and better data." :
+        accuracy.current <= 99 ?
+        "Great score! I wonder if you can get 100 next time..." :
+        "Wow! A perfect score - great job!"
+        } </h2>
       </div>
   }></CenteredCard>,
   //SLIDE 31
@@ -424,7 +439,7 @@ const WebcamViewer = () => {
       </div>
   }></CenteredCard>,
   //SLIDE 32 (camera)
-<WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera" acceptArray={birds} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
+<WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera\n. Try and get a high accuracy by showing a variety of birds." acceptArray={birds} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
 //SLIDE 33
   <CenteredCard msg={
     <div className="relative w-full h-full">
