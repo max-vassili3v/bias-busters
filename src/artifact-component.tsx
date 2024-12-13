@@ -429,7 +429,15 @@ const WebcamViewer = () => {
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
-      <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
+      <h2 className="text-4xl mb-6 leading-loose">{
+        accuracy.current <= 33 ?
+        "Try to get a higher score by training with more cards, and not using wrong data!" :
+        accuracy.current <= 66 ?
+        "Nice try! Try again later training with more and better data." :
+        accuracy.current <= 99 ?
+        "Great score! I wonder if you can get 100 next time..." :
+        "Wow! A perfect score - great job!"
+        } </h2>
       </div>
   }></CenteredCard>,
   //SLIDE 34
@@ -538,7 +546,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   useEffect(() => {
     const loadModel = () => {
       // Path to the model's JSON file in the public folder
-      const modelPath = "https://teachablemachine.withgoogle.com/models/7swjhMK8A/";
+      const modelPath = "https://teachablemachine.withgoogle.com/models/kAIpZlI8V/";
 
       // Load the model using ml5.js
       const loadedModel = ml5.imageClassifier(modelPath, () => {
