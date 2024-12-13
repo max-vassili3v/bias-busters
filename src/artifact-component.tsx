@@ -22,7 +22,7 @@ const WebcamViewer = () => {
 
   const audioRef = useRef(null);
 
-  const camSlides = [5, 16, 19, 23];
+  const camSlides = [5, 16, 19, 25];
 
   const accuracy = useRef(0.0);
 
@@ -301,7 +301,7 @@ const WebcamViewer = () => {
         className="max-w-md rounded-lg relative top-10 mx-auto shadow-lg"
       /></div>
   }></CenteredCard>,
-  //SLIDE 15
+  //SLIDE 16
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">Our AI aliens can also be biased. We have only shown them one type of dog. They do not have enough information to understand that there are other types of dogs.</h2>
@@ -313,9 +313,9 @@ const WebcamViewer = () => {
       <h2 className="text-4xl mb-6 leading-loose py-10">So let's continue, and show our aliens what other dogs can look like!</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 14 (camera)
+  //SLIDE 17 (camera)
 <WebcamComponent success={nextSlide} seenThresh={3} msg = "Show the aliens what other dogs look like!" acceptArray={dogs} acc = {accuracy}></WebcamComponent>,
-//SLIDE 15
+//SLIDE 18
 <CenteredCard msg={
     <div className="relative w-full h-full">
       <img 
@@ -324,7 +324,7 @@ const WebcamViewer = () => {
         className="w-96 rounded-lg mx-auto shadow-lg"
       /><h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Thanks a bunch! Now we understand what a dog is, and how they come in different sizes and colors!</h2></div>
   }></CenteredCard>,
-  //SLIDE 16
+  //SLIDE 19
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <img 
@@ -334,9 +334,9 @@ const WebcamViewer = () => {
       />
 <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">My next question is about this other animal called a 'cat'. Please show me a cat.</h2></div>
   }></CenteredCard>,
-  //SLIDE 17 (camera)
+  //SLIDE 20 (camera)
 <WebcamComponent success={nextSlide} msg = "Show the aliens what a cat is through the camera" acceptArray={cats} seenThresh={1} acc = {accuracy}></WebcamComponent>,
-//SLIDE 18
+//SLIDE 21
 <CenteredCard msg={
     <div className="relative w-full h-full">
       <img 
@@ -347,10 +347,20 @@ const WebcamViewer = () => {
       <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">So this is a cat, but I don't understand how this is different from a dog! They both have pointy ears, round eyes, fur...</h2></div>
     
   }></CenteredCard>,
-  //SLIDE 19
+  //SLIDE 22
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose"><b>Bias</b> can also cause us to not understand the difference between things. Imagine you were arranging fruits into categories but you had never seen an orange before. Is it a strange apple? Maybe a strange peach?</h2>
+      <img 
+        src="orange.jpg"
+        alt="Greeting"
+        className="w-96 rounded-lg mx-auto shadow-lg"
+      />
+      </div>
+  }></CenteredCard>,
+  //SLIDE 23
+  <CenteredCard msg={
+    <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-10">Because we don't have enough <b>information</b>, we are <b>biased</b> in how we recognise different fruits.</h2>
       <img 
         src="orange.jpg"
@@ -359,7 +369,7 @@ const WebcamViewer = () => {
       />
       </div>
   }></CenteredCard>,
-  //SLIDE 20
+  //SLIDE 24
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose">In the same way, our AI aliens are <b>biased</b> because they do not have enough information about cats to properly tell the difference.</h2>
@@ -371,9 +381,9 @@ const WebcamViewer = () => {
       <h2 className="text-4xl mb-6 leading-loose py-10">Let's try and teach them the difference by showing more pictures of cats!</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 21 (camera)
+  //SLIDE 25 (camera)
 <WebcamComponent success={nextSlide} msg = "Show the aliens more pictures of cats!" acceptArray = {cats} seenThresh={3} acc = {accuracy}></WebcamComponent>,
-//SLIDE 22
+//SLIDE 26
 <CenteredCard msg={
     <div className="relative w-full h-full">
       <img 
@@ -384,7 +394,7 @@ const WebcamViewer = () => {
       <h2 className="text-4xl mb-6 leading-loose absolute w-full top-[150%]">Wow! Now I understand what a cat is, and the difference between cats and dogs. Thank you!!!</h2></div>
     
   }></CenteredCard>,
-  //SLIDE 23
+  //SLIDE 27
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose"><b>Congratulations!</b> you have completed the lesson and you now understand how bias can trick AI, and why good data is needed for AI. </h2>
@@ -392,43 +402,47 @@ const WebcamViewer = () => {
       <h2 className="text-4xl mb-6 leading-loose py-10">Once you think you have given enough good data, press 'next' to see how well the AI understands what bears and birds are. See if you can get 100% accuracy!</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 24
+  //SLIDE 28
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[20%]">First, let's start with bears. </h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 25
+  //SLIDE 29
 <WebcamComponent success={nextSlide} msg = "Show the aliens what a bear is through the camera" acceptArray={bears} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
-//SLIDE 26
+//SLIDE 30
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
       <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 27
+  //SLIDE 31
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[20%]">Now, let's try birds.</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 28 (camera)
+  //SLIDE 32 (camera)
 <WebcamComponent success={nextSlide} msg = "Show the aliens what a bird is through the camera" acceptArray={birds} seenThresh={1024} acc = {accuracy}></WebcamComponent>,
-//SLIDE 29
+//SLIDE 33
   <CenteredCard msg={
     <div className="relative w-full h-full">
       <h2 className="text-4xl mb-6 leading-loose py-[10%]">Accuracy: {accuracy.current}% </h2>
       <h2 className="text-4xl mb-6 leading-loose">Wow!!! Well done!</h2>
       </div>
   }></CenteredCard>,
-  //SLIDE 30
+  //SLIDE 34
     <CenteredCard msg={
       <div className="relative w-full h-full">
         <h2 className="text-9xl font-semibold mb-6 leading-loose">Thank you for playing!</h2>
         <br></br>
           <p className="text-gray-600 text-lg leading-relaxed leading-loose">
             Developed by Max Vassiliev
+          </p>
+          <br></br>
+          <p className="text-gray-600 text-lg leading-relaxed leading-loose">
+            Concept by Marc Oliveras and Mireia Torello
           </p>
           <br></br>
           <br></br>
@@ -524,7 +538,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   useEffect(() => {
     const loadModel = () => {
       // Path to the model's JSON file in the public folder
-      const modelPath = "https://teachablemachine.withgoogle.com/models/t9XwtXKVp/";
+      const modelPath = "https://teachablemachine.withgoogle.com/models/7swjhMK8A/";
 
       // Load the model using ml5.js
       const loadedModel = ml5.imageClassifier(modelPath, () => {
