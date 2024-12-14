@@ -263,18 +263,18 @@ const WebcamViewer = () => {
   }></CenteredCard>,
   //SLIDE 12
 <CenteredCard msg={
-    <div className="relative w-full h-full">
+    <div className="relative max-w-full max-h-full flex flex-col flex-shrink">
       <h2 className="text-4xl mb-6 leading-loose">Imagine you are a human who has only ever tried chocolate ice cream. When someone asks you what your favorite flavor is, you probably say chocolate.</h2>
       <img 
         src="icecream.jpg"
         alt="Greeting"
-        className="max-w-md relative top-10 rounded-lg mx-auto shadow-lg"
+        className="max-w-md w-auto max-h-md h-auto object-fit relative top-10 rounded-lg mx-auto shadow-lg "
       /></div>
   }></CenteredCard>,
   //SLIDE 13
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose">But this is biased! You have never tried any other flavors before. You do not have enough <b>information</b> to make an <b>unbiased decision.</b></h2>
+      <h2 className="text-3xl mb-6 leading-loose">But this is biased! You have never tried any other flavors before. You do not have enough <b>information</b> to make an <b>unbiased decision.</b></h2>
       <img 
         src="icecream.jpg"
         alt="Greeting"
@@ -284,7 +284,7 @@ const WebcamViewer = () => {
   //SLIDE 14
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger. Your friends and the stranger's friends are listening.</h2>
+      <h2 className="text-3xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger. Your friends and the stranger's friends are listening.</h2>
       <img 
         src="argue.jpg"
         alt="Greeting"
@@ -294,23 +294,23 @@ const WebcamViewer = () => {
   //SLIDE 15
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose py-10"> Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
+      <h2 className="text-3xl mb-6 leading-loose"> Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
       <img 
         src="argue.jpg"
         alt="Greeting"
-        className="max-w-md rounded-lg relative top-10 mx-auto shadow-lg"
+        className="max-w-md h-auto object-contain rounded-lg relative top-10 mx-auto shadow-lg"
       /></div>
   }></CenteredCard>,
   //SLIDE 16
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose py-10">Our AI aliens can also be biased. We have only shown them one type of dog. They do not have enough information to understand that there are other types of dogs.</h2>
-      <h2 className="text-4xl mb-6 leading-loose py-10">It is important to teach our AI that dogs can come in different colors, sizes, species, and so on.</h2>
+      <h2 className="text-4xl mb-6 leading-loose">Our AI aliens can also be biased. We have only shown them one type of dog. They do not have enough information to understand that there are other types of dogs.</h2>
+      <h2 className="text-4xl mb-6 leading-loose">It is important to teach our AI that dogs can come in different colors, sizes, species, and so on.</h2>
       </div>
   }></CenteredCard>,
   <CenteredCard msg={
     <div className="relative w-full h-full">
-      <h2 className="text-4xl mb-6 leading-loose py-10">So let's continue, and show our aliens what other dogs can look like!</h2>
+      <h2 className="text-4xl mb-6 leading-loose">So let's continue, and show our aliens what other dogs can look like!</h2>
       </div>
   }></CenteredCard>,
   //SLIDE 17 (camera)
@@ -679,10 +679,10 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      <h2 className="text-2xl font-semibold mb-6 leading-loose bg-black bg-opacity-60 p-5 rounded-lg">{msg}</h2>
+      <h2 className="text-2xl font-semibold mb-6 leading-loose bg-black bg-opacity-60 p-5 rounded-lg">{`${msg} (seen ${seenSet.current.size})`}</h2>
     </div>
 
-    <PopupWindow isOpen = {isOpen} onClose={() => setIsOpen(false)} ttitle="Message" msg={
+    <PopupWindow isOpen = {isOpen} onClose={() => {setMessage(null); setIsOpen(false)}} ttitle="Message" msg={
       <div className="text-center">{message}</div>
     }></PopupWindow>
       </div>
@@ -734,7 +734,7 @@ const CenteredCard : React.FC<CenteredCardProps> = ({msg}) => {
     <motion.div initial="hidden" exit="hidden" animate="visible" variants={variants} transition={{ duration: 0.5, ease: "easeOut"}}>
     <div className="min-h-screen flex items-start justify-center p-8 ">
       <Card className="w-full max-w-[85%] h-[80vh] dark border-0">
-        <CardContent className="p-12 text-center flex flex-col">
+        <CardContent className="p-12 text-center flex flex-col ">
           {msg}
         </CardContent>
       </Card>
