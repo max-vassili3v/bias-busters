@@ -561,7 +561,7 @@ const WebcamComponent : React.FC<WebcamComponentProps> = ({success, msg, acceptA
   useEffect(() => {
     const loadModel = () => {
       // Path to the model's JSON file in the public folder
-      const modelPath = "https://teachablemachine.withgoogle.com/models/kAIpZlI8V/";
+      const modelPath = "https://teachablemachine.withgoogle.com/models/79pLPee5sp/";
 
       // Load the model using ml5.js
       const loadedModel = ml5.imageClassifier(modelPath, () => {
