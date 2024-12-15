@@ -712,7 +712,7 @@ const CenteredCard : React.FC<CenteredCardProps> = ({msg}) => {
 
   return (
     <motion.div initial="hidden" exit="hidden" animate="visible" variants={variants} transition={{ duration: 0.5, ease: "easeOut"}}>
-    <div className="min-h-screen flex items-start justify-center p-8 ">
+    <div className="max-h-screen flex items-start justify-center p-8 ">
       <Card className="w-full max-w-[85%] h-[80vh] dark border-0">
         <CardContent className="p-12 text-center flex flex-col ">
           {msg}
