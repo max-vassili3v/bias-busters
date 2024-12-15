@@ -22,7 +22,7 @@ const WebcamViewer = () => {
 
   const audioRef = useRef(null);
 
-  const camSlides = [5, 16, 19, 25];
+  const camSlides = [5, 14, 17, 23];
 
   const accuracy = useRef(0.0);
 
@@ -279,26 +279,6 @@ const WebcamViewer = () => {
         src="icecream.jpg"
         alt="Greeting"
         className="max-w-md relative top-10 rounded-lg mx-auto shadow-lg"
-      /></div>
-  }></CenteredCard>,
-  //SLIDE 14
-  <CenteredCard msg={
-    <div className="relative w-full h-full">
-      <h2 className="text-3xl mb-6 leading-loose">Another example! Imagine you are having an argument with a stranger. Your friends and the stranger's friends are listening.</h2>
-      <img 
-        src="argue.jpg"
-        alt="Greeting"
-        className="max-w-md rounded-lg relative top-10 mx-auto shadow-lg"
-      /></div>
-  }></CenteredCard>,
-  //SLIDE 15
-  <CenteredCard msg={
-    <div className="relative w-full h-full">
-      <h2 className="text-3xl mb-6 leading-loose"> Because your friends know and trust you, they might be <b>biased</b> and automatically think you are correct. Even if you are actually wrong</h2>
-      <img 
-        src="argue.jpg"
-        alt="Greeting"
-        className="max-w-md h-auto object-contain rounded-lg relative top-10 mx-auto shadow-lg"
       /></div>
   }></CenteredCard>,
   //SLIDE 16
